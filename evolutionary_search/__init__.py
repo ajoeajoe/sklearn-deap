@@ -52,7 +52,7 @@ class EvolutionaryAlgorithmSearchCV(BaseSearchCV):
 
     def _individual_to_params(self, val):
         if val >= len(self.possible_params):
-            return False
+            return self.possible_params[-1]
         return self.possible_params[val]
 
     def _evalFunction(self, individual):
