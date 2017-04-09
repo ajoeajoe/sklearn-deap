@@ -22,6 +22,6 @@ setup(
         'scipy==0.16.0',
         'bitstring==3.1.3',
         'deap==1.0.2',
-        'scikit-learn==0.16.1',
+        'scikit-learn>=0.18.0',
     ],
 )
