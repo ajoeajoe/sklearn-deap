@@ -6,7 +6,7 @@ from bitstring import BitArray
 from deap import base, creator, tools, algorithms
 from math import log, ceil
 from multiprocessing import Pool
-from sklearn import cross_validation
+from sklearn import model_selection
 from sklearn.base import clone
 from sklearn.grid_search import ParameterGrid, _check_param_grid, BaseSearchCV
 
@@ -63,8 +63,8 @@ class EvolutionaryAlgorithmSearchCV(BaseSearchCV):
                 return (0,)
             clf = clone(self.estimator)
             clf.set_params(**params)
-            scores = cross_validation.cross_val_score(clf, self.X, self.y,
-                                                      cv=self.cv, scoring=self.scoring)
+            scores = model_selection.cross_val_score(clf, self.X, self.y,
+                                                     cv=self.cv, scoring=self.scoring)
             self._individual_evals[individual_int] = float(scores.mean())
 
         return (self._individual_evals[individual_int],)
